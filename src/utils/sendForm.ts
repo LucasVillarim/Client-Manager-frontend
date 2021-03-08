@@ -3,8 +3,6 @@ import { useGlobal } from 'Context';
 import { FormProps, UserProps } from 'interfaces';
 import api from 'services/api';
 
-const { setMainList, setModal } = useGlobal();
-
 export function clearEmptyRows(tableData: any) {
   const cleanTable = tableData.filter(
     (element: any) => element.product !== '' && element.price !== '',
@@ -18,6 +16,7 @@ export async function SendForm(
   total: number | string,
   tableData?: any,
 ): Promise<Response> {
+  const { setMainList, setModal } = useGlobal();
   const table = clearEmptyRows(tableData);
   let response: any;
   try {
