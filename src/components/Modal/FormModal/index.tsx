@@ -23,11 +23,12 @@ import {
   generateDocx,
   ProductsTable,
   clearEmptyRows,
+  UserProps,
 } from 'utils/imports';
 import { Container, LeftSide, RightSide } from './styles';
 
 const FormComponent: React.FC<FormComponentProps> = () => {
-  const { setModal } = useGlobal();
+  const { mainList, setMainList, setModal } = useGlobal();
   const formRef = useRef<FormHandles>(null);
   const [tableRows, setTableRows] = useState<tableRowsProps[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -57,7 +58,11 @@ const FormComponent: React.FC<FormComponentProps> = () => {
   };
 
   const handleSubmit = (form: FormProps): void => {
-    SendForm('Main', form, total, tableRows);
+    const response = SendForm('Main', form, total, tableRows);
+
+    setMainList((prevData: UserProps[]) => [...prevData, response]);
+    // setMainList([...mainList, response]);
+    setModal({ show: false, modalType: null });
   };
 
   const addRow = (): void => {

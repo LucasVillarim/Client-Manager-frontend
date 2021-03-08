@@ -18,7 +18,7 @@ const List: React.FC<ListProps> = ({ searchData }) => {
     fetchData();
   }, [setMainList]);
 
-  const users = [...mainList]
+  const users = mainList
     .filter((userList: UserProps) => {
       if (searchData === null) {
         return userList;
@@ -28,9 +28,10 @@ const List: React.FC<ListProps> = ({ searchData }) => {
       }
       return null;
     })
-    .map((user: UserProps) => {
+    .map((user: UserProps, index: number) => {
       return (
-        <tr className="row" key={user._id}>
+        // eslint-disable-next-line react/no-array-index-key
+        <tr className="row" key={index}>
           <td>{user.name}</td>
           <td>{user.contact}</td>
           <td>{user.company}</td>
@@ -65,31 +66,3 @@ const List: React.FC<ListProps> = ({ searchData }) => {
 };
 
 export default List;
-
-// const handleCheck = (
-//   user: UserProps,
-//   e: React.ChangeEvent<HTMLInputElement>,
-// ) => {
-//   if (e.target.checked) {
-//     const newArray = defaultList.map((listUser: UserProps) => {
-//       return listUser._id === user._id
-//         ? { ...user, isChecked: true }
-//         : listUser;
-//     });
-//     setDefaultList(newArray);
-//   } else {
-//     const newArray = defaultList.map((listUser: UserProps) => {
-//       return listUser._id === user._id
-//         ? { ...user, isChecked: false }
-//         : listUser;
-//     });
-//     setDefaultList(newArray);
-//   }
-// };
-
-/* <td>
-            <Checkbox
-              checked={user.isChecked || false}
-              onChange={checked => handleCheck(user, checked)}
-            />
-          </td> */

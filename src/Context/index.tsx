@@ -24,7 +24,7 @@ export const StateProvider: React.FC<GlobalProps> = ({ children }) => {
   );
 };
 
-export function useGlobal() {
+export function useGlobal(): Context {
   const varState = useContext(StateContext);
   return varState;
 }

@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { useGlobal } from 'Context';
-import { FormProps, UserProps } from 'interfaces';
+import { FormProps } from 'interfaces';
 import api from 'services/api';
 
 export function clearEmptyRows(tableData: any) {
@@ -16,7 +15,6 @@ export async function SendForm(
   total: number | string,
   tableData?: any,
 ): Promise<Response> {
-  const { setMainList, setModal } = useGlobal();
   const table = clearEmptyRows(tableData);
   let response: any;
   try {
@@ -24,10 +22,8 @@ export async function SendForm(
       form,
       tableData: table,
     });
-    setMainList((prevData: UserProps[]) => [...prevData, response]);
-    setModal({ show: false, modalType: null });
   } catch (err) {
     console.log(err);
   }
-  return response.data;
+  return response;
 }
