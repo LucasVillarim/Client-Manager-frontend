@@ -58,10 +58,8 @@ const FormComponent: React.FC<FormComponentProps> = () => {
   };
 
   const handleSubmit = (form: FormProps): void => {
-    const response = SendForm('Main', form, total, tableRows);
-
-    setMainList((prevData: UserProps[]) => [...prevData, response]);
-    // setMainList([...mainList, response]);
+    setMainList((prevData: UserProps[]) => [...prevData, form]);
+    SendForm('Main', form, total, tableRows);
     setModal({ show: false, modalType: null });
   };
 

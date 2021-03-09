@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
-import { FormProps } from 'interfaces';
+import { useGlobal } from 'Context';
+import { FormProps, UserProps } from 'interfaces';
 import api from 'services/api';
 
 export function clearEmptyRows(tableData: any) {
